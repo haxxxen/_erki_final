@@ -1,0 +1,14 @@
+#ifndef __SYMBOLS_H__
+#define __SYMBOLS_H__
+
+#define KERNEL_BASE 0x8000000000000000 //
+#define KERNEL_TOC 0x365CA0 //done
+
+#define KERNEL_SYMBOL_EXTEND_KSTACK 0x7330C // 
+
+#define KERNEL_SYMBOL_MEMSET 0x51E34 // 
+#define KERNEL_SYMBOL_MEMCPY 0x82120 // 
+
+#define KERNEL_SYMBOL_COPY_TO_USER      0xFEA0 // 
+
+#endif

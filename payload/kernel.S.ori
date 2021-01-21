@@ -1,0 +1,229 @@
+#include "asm.h"
+#ifdef CEX_421
+#include "symbols_421C.h"
+#endif
+#ifdef DEX_421
+#include "symbols_421D.h"
+#endif
+#ifdef CEX_446
+#include "symbols_446C.h"
+#endif
+#ifdef DEX_446
+#include "symbols_446D.h"
+#endif
+
+#define KERNEL_FUNCTION(name, address) \
+	.section .name.text, "ax"; \
+	.global name; \
+	.align 3; \
+	name:; \
+	.quad KERNEL_BASE | address, KERNEL_BASE | KERNEL_TOC; \
+	.previous; 
+
+KERNEL_FUNCTION(lv2_extend_kstack, KERNEL_SYMBOL_EXTEND_KSTACK)
+
+KERNEL_FUNCTION(lv2_allocate, KERNEL_SYMBOL_ALLOCATE)
+KERNEL_FUNCTION(lv2_deallocate, KERNEL_SYMBOL_DEALLOCATE)
+
+KERNEL_FUNCTION(lv2_page_allocate, KERNEL_SYMBOL_PAGE_ALLOCATE)
+KERNEL_FUNCTION(lv2_page_deallocate, KERNEL_SYMBOL_PAGE_DEALLOCATE)
+KERNEL_FUNCTION(lv2_page_export_to_process, KERNEL_SYMBOL_PAGE_EXPORT_TO_PROCESS)
+KERNEL_FUNCTION(lv2_page_unexport_from_process, KERNEL_SYMBOL_PAGE_UNEXPORT_FROM_PROCESS)
+
+KERNEL_FUNCTION(lv2_create_memory_container, KERNEL_SYMBOL_CREATE_MEMORY_CONTAINER)
+KERNEL_FUNCTION(lv2_destroy_memory_container, KERNEL_SYMBOL_DESTROY_MEMORY_CONTAINER)
+
+KERNEL_FUNCTION(lv2_memset, KERNEL_SYMBOL_MEMSET)
+KERNEL_FUNCTION(lv2_memcpy, KERNEL_SYMBOL_MEMCPY)
+KERNEL_FUNCTION(lv2_memchr, KERNEL_SYMBOL_MEMCHR)
+KERNEL_FUNCTION(lv2_memcmp, KERNEL_SYMBOL_MEMCMP)
+
+KERNEL_FUNCTION(lv2_strlen, KERNEL_SYMBOL_STRLEN)
+KERNEL_FUNCTION(lv2_strcpy, KERNEL_SYMBOL_STRCPY)
+KERNEL_FUNCTION(lv2_strncpy, KERNEL_SYMBOL_STRNCPY)
+KERNEL_FUNCTION(lv2_strcat, KERNEL_SYMBOL_STRCAT)
+KERNEL_FUNCTION(lv2_strchr, KERNEL_SYMBOL_STRCHR)
+KERNEL_FUNCTION(lv2_strrchr, KERNEL_SYMBOL_STRRCHR)
+KERNEL_FUNCTION(lv2_strcmp, KERNEL_SYMBOL_STRCMP)
+KERNEL_FUNCTION(lv2_strncmp, KERNEL_SYMBOL_STRNCMP)
+
+KERNEL_FUNCTION(lv2_printf, KERNEL_SYMBOL_PRINTF)
+KERNEL_FUNCTION(lv2_sprintf, KERNEL_SYMBOL_SPRINTF)
+KERNEL_FUNCTION(lv2_snprintf, KERNEL_SYMBOL_SNPRINTF)
+KERNEL_FUNCTION(lv2_vsnprintf, KERNEL_SYMBOL_VSNPRINTF)
+
+KERNEL_FUNCTION(lv2_fs_open_1, KERNEL_SYMBOL_FS_OPEN_1)
+KERNEL_FUNCTION(lv2_fs_open_2, KERNEL_SYMBOL_FS_OPEN_2)
+KERNEL_FUNCTION(lv2_fs_read, KERNEL_SYMBOL_FS_READ)
+KERNEL_FUNCTION(lv2_fs_write, KERNEL_SYMBOL_FS_WRITE)
+KERNEL_FUNCTION(lv2_fs_lseek, KERNEL_SYMBOL_FS_LSEEK)
+KERNEL_FUNCTION(lv2_fs_stat, KERNEL_SYMBOL_FS_STAT)
+KERNEL_FUNCTION(lv2_fs_close, KERNEL_SYMBOL_FS_CLOSE)
+
+KERNEL_FUNCTION(lv2_ppu_thread_create, KERNEL_SYMBOL_PPU_THREAD_CREATE)
+KERNEL_FUNCTION(lv2_ppu_thread_join, KERNEL_SYMBOL_PPU_THREAD_JOIN)
+KERNEL_FUNCTION(lv2_ppu_thread_delay, KERNEL_SYMBOL_PPU_THREAD_DELAY)
+KERNEL_FUNCTION(lv2_ppu_thread_exit, KERNEL_SYMBOL_PPU_THREAD_EXIT)
+
+KERNEL_FUNCTION(lv2_create_user_thread1, KERNEL_SYMBOL_CREATE_USER_THREAD1)
+KERNEL_FUNCTION(lv2_create_user_thread2, KERNEL_SYMBOL_CREATE_USER_THREAD2)
+KERNEL_FUNCTION(lv2_register_thread, KERNEL_SYMBOL_REGISTER_THREAD)
+KERNEL_FUNCTION(lv2_start_thread, KERNEL_SYMBOL_START_THREAD)
+KERNEL_FUNCTION(lv2_run_thread, KERNEL_SYMBOL_RUN_THREAD)
+
+KERNEL_FUNCTION(lv2_allocate_user_stack, KERNEL_SYMBOL_ALLOCATE_USER_STACK)
+KERNEL_FUNCTION(lv2_deallocate_user_stack, KERNEL_SYMBOL_DEALLOCATE_USER_STACK)
+
+KERNEL_FUNCTION(lv2_copy_from_user, KERNEL_SYMBOL_COPY_FROM_USER)
+KERNEL_FUNCTION(lv2_copy_to_user, KERNEL_SYMBOL_COPY_TO_USER)
+KERNEL_FUNCTION(lv2_copy_from_process, KERNEL_SYMBOL_COPY_FROM_PROCESS)
+KERNEL_FUNCTION(lv2_copy_to_process, KERNEL_SYMBOL_COPY_TO_PROCESS)
+
+KERNEL_FUNCTION(lv2_id_table_reserve_id, KERNEL_SYMBOL_ID_TABLE_RESERVE_ID)
+KERNEL_FUNCTION(lv2_id_table_unreserve_id, KERNEL_SYMBOL_ID_TABLE_UNRESERVE_ID)
+
+KERNEL_FUNCTION(lv2_get_object_count, KERNEL_SYMBOL_GET_OBJECT_COUNT)
+KERNEL_FUNCTION(lv2_get_objects, KERNEL_SYMBOL_GET_OBJECTS)
+
+KERNEL_FUNCTION(lv2_process_sub_8000000000003B38, KERNEL_SYMBOL_PROCESS_SUB_8000000000003B38)
+
+KERNEL_FUNCTION(lv2_process_read_memory, KERNEL_SYMBOL_PROCESS_READ_MEMORY)
+KERNEL_FUNCTION(lv2_process_write_memory_ex, KERNEL_SYMBOL_PROCESS_WRITE_MEMORY_EX)
+KERNEL_FUNCTION(lv2_process_get_internal_ppu_thread_count, KERNEL_SYMBOL_PROCESS_GET_INTERNAL_PPU_THREAD_COUNT)
+KERNEL_FUNCTION(lv2_process_get_parent_pid, KERNEL_SYMBOL_PROCESS_GET_PARENT_PID)
+KERNEL_FUNCTION(lv2_process_allocate_mapped_memory_ex, KERNEL_SYMBOL_PROCESS_ALLOCATE_MAPPED_MEMORY_EX)
+
+KERNEL_FUNCTION(lv2_prx_load_module, KERNEL_SYMBOL_PRX_LOAD_MODULE)
+KERNEL_FUNCTION(lv2_prx_start_module, KERNEL_SYMBOL_PRX_START_MODULE)
+KERNEL_FUNCTION(lv2_prx_stop_module, KERNEL_SYMBOL_PRX_STOP_MODULE)
+KERNEL_FUNCTION(lv2_prx_unload_module, KERNEL_SYMBOL_PRX_UNLOAD_MODULE)
+
+KERNEL_FUNCTION(lv2_prx_get_module_info, KERNEL_SYMBOL_PRX_GET_MODULE_INFO)
+KERNEL_FUNCTION(lv2_prx_get_module_id_by_address, KERNEL_SYMBOL_PRX_GET_MODULE_ID_BY_ADDRESS)
+KERNEL_FUNCTION(lv2_prx_get_module_id_by_name, KERNEL_SYMBOL_PRX_GET_MODULE_ID_BY_NAME)
+KERNEL_FUNCTION(lv2_prx_get_module_list, KERNEL_SYMBOL_PRX_GET_MODULE_LIST)
+
+KERNEL_FUNCTION(lv2_kernel_ea_to_lpar_addr, KERNEL_SYMBOL_KERNEL_EA_TO_LPAR_ADDR)
+KERNEL_FUNCTION(lv2_process_ea_to_lpar_addr_ex, KERNEL_SYMBOL_PROCESS_EA_TO_LPAR_ADDR_EX)
+KERNEL_FUNCTION(lv2_map_contiguous_memory, KERNEL_SYMBOL_MAP_CONTIGUOUS_MEMORY)
+KERNEL_FUNCTION(lv2_unmap_contiguous_memory, KERNEL_SYMBOL_UNMAP_CONTIGUOUS_MEMORY)
+
+KERNEL_FUNCTION(lv2_spin_lock_irqsave_ex, KERNEL_SYMBOL_SPIN_LOCK_IRQSAVE_EX)
+KERNEL_FUNCTION(lv2_spin_unlock_irqrestore_ex, KERNEL_SYMBOL_SPIN_LOCK_IRQRESTORE_EX)
+
+KERNEL_FUNCTION(lv2_panic, KERNEL_SYMBOL_PANIC)
+
+KERNEL_FUNCTION(lv2_syscall_sys_process_getpid,  KERNEL_SYMBOL_SYS_PROCESS_GETPID)
+KERNEL_FUNCTION(lv2_syscall_sys_process_exit, KERNEL_SYMBOL_SYS_PROCESS_EXIT)
+
+GLOBAL(get_current_thread)
+	mfsprg0 %r9
+	ld %r4, 0xA0(%r9)
+	ld %r3, 0x40(%r4)
+	blr
+
+GLOBAL(get_current_thread_name)
+	mfsprg0 %r3
+	blr
+
+GLOBAL(get_current_process)
+	mfsprg0 %r3
+	lhz %r0, 0xC0(%r3)
+	cmpwi cr7, %r0, 3
+	beq cr7, loc_0
+	ld %r3, 0xB0(%r3)
+	blr
+loc_0:                               
+	mfsprg0 %r9
+	ld %r11, 0x68(%r9)
+	li %r3, 0
+	ld %r11, 0(%r11)
+	cmpdi cr7, %r11, 0
+	beqlr cr7
+	ld %r3, 0x80(%r11)
+	blr
+
+GLOBAL(suspend_interrupts)
+	mfsprg0 %r9
+	ld %r3, 0x48(%r9)
+	li %r0, 2
+	mtmsrd %r0, 1
+	blr
+	
+GLOBAL(resume_interrupts)
+	mfsprg0 %r9
+	ld %r3, 0x48(%r9)
+	li %r0, 0
+	ori %r0, %r0, 0x8002
+	lwsync
+	mtmsrd %r0, 1
+	blr
+
+GLOBAL(lv1_peek64)
+	mflr %r0
+	std %r0, 0x10(%r1)
+	li %r11, 0xB6
+	sc 1
+	mr %r3, %r4
+	ld %r0, 0x10(%r1)
+	mtlr %r0
+	blr
+
+GLOBAL(lv1_poke64)
+	mflr %r0
+	std %r0, 0x10(%r1)
+	li %r11, 0xB7
+	sc 1
+	li %r3, 0
+	ld %r0, 0x10(%r1)
+	mtlr %r0
+	blr
+
+GLOBAL(lv2_peek64)
+	ld %r3, 0(%r3)
+	blr
+
+GLOBAL(lv2_poke64)
+	std %r4, 0(%r3)
+	icbi 0, %r3
+	isync
+	blr
+
+GLOBAL(lv2_poke64_no_sync)
+	std %r4, 0(%r3)
+	blr
+
+GLOBAL(clear_icache)
+	add %r4, %r3, %r4
+	rldicr %r3, %r3, 0, 56	
+1:	
+	cmpld %r3, %r4
+	bge 2f
+	dcbst 0, %r3
+	sync
+	icbi 0, %r3
+	isync
+	addi %r3, %r3, 0x80
+	b 1b	
+2:
+	blr	
+
+GLOBAL(get_call_address)
+	ld %r5, 0(%sp)
+	cmpwi %r3, 0
+	ble 4f
+	mtctr %r3	
+3:
+	cmpdi %r5, 0
+	beq 5f
+	ld %r5, 0(%r5)
+	bdnz 3b	
+4:	
+	cmpdi %r5, 0
+	beq 5f
+	ld %r3, 0x10(%r5)
+	addi %r3, %r3, -4
+	blr	
+5:
+	li %r3, 0
+	blr	
